@@ -1,2 +1,2 @@
-# calculator
+# calculator but on iphoneXR
  
