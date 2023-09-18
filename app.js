@@ -15,14 +15,15 @@ let collectResult = ''
 displayResult.textContent = "0";
 let operators = ''
 let operatorsReserve = ''
+let turn = false;
 
 buttons.forEach(button => {
     button.addEventListener('click',()=>{
         buttonValue = button.value; 
         buttonResult = buttonResult + buttonValue ;
-        //result on console
         console.log("Button Value :", buttonResult);
         displayResult.textContent = buttonResult;
+        turn = false;
 
     })
 })
@@ -40,6 +41,9 @@ function calculation(calculate){
     if (result != ''){
         console.log("your click me again!")
         collectResult = result;
+        result = '';
+        displayResult.textContent = "0";
+        turn = true;
     }else{
         collectResult = parseInt(buttonResult);}
     buttonValue = '';
@@ -48,31 +52,30 @@ function calculation(calculate){
 
 
 equal.addEventListener('click',()=>{
-    operatorsReserve = operators;
-    buttonResult = parseInt(buttonResult);
-    collectResult = parseInt(collectResult);
-    console.log(collectResult);
-    console.log(buttonResult);
-    console.log("***");
-    switch(operators){
-        case "+":
-            result = collectResult + buttonResult;
-            console.log(result)
-            displayResult.textContent = result;
-            break
-        default:
-            console.log(result)
+    if(operators){
+        operatorsReserve = operators;
+        buttonResult = parseInt(buttonResult);
+        collectResult = parseInt(collectResult);
+        console.log(collectResult);
+        console.log(buttonResult);
+        console.log("***");
+        switch(operators){
+            case "+":
+                result = collectResult + buttonResult;
+                console.log(result)
+                displayResult.textContent = result;
+                break
+            default:
+                console.log(result)
+     }
     }
-    buttonValue = ''
-    buttonResult = ''
-    collectResult = ''
 })
-
 
 
 clearBtn.addEventListener('click',()=>{
     buttonValue = ''
     buttonResult = ''
+    collectResult = ''
     result = ''
     displayResult.textContent = "0";
     console.log("Button Value :", "0")
