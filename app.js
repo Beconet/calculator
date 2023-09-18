@@ -15,6 +15,7 @@ let collectResult = ''
 displayResult.textContent = "0";
 let operators = ''
 let operatorsReserve = ''
+let topOperators = ''
 let turn = false;
 
 buttons.forEach(button => {
@@ -23,8 +24,6 @@ buttons.forEach(button => {
         buttonResult = buttonResult + buttonValue ;
         console.log("Button Value :", buttonResult);
         displayResult.textContent = buttonResult;
-        turn = false;
-
     })
 })
 
@@ -36,42 +35,91 @@ divide.addEventListener('click',()=>{calculation(divide)})
 
 function calculation(calculate){
     operators = calculate.value;
+    operatorsReserve = operators;
     console.log("you click", operators)
     //after click equal before operators
+    if(turn == true){
+        console.log("Work")
+        buttonResult = parseInt(buttonResult)
+        console.log(collectResult);
+        console.log(buttonResult);
+            switch(operatorsReserve){
+                case "+":
+                    result = collectResult + buttonResult;
+                    console.log(result)
+                    displayResult.textContent = result;
+                    break
+                case "-":
+                    result = collectResult - buttonResult;
+                    console.log(result)
+                    displayResult.textContent = result;
+                    break
+                case "*":
+                    result = collectResult * buttonResult;
+                    console.log(result)
+                    displayResult.textContent = result;
+                    break
+                case "/":
+                    result = collectResult / buttonResult;
+                    console.log(result)
+                    displayResult.textContent = result;
+                    break    
+                default:
+                    console.log(result)
+        }
+        topOperators = operatorsReserve
+        }
     if (result != ''){
-        console.log("your click me again!")
+        console.log("your click me again! after equal")
         collectResult = result;
-        result = '';
-        displayResult.textContent = "0";
         turn = true;
-    }else{
-        collectResult = parseInt(buttonResult);}
+    }
+    else{
+        collectResult = parseInt(buttonResult);
+        turn = true;
+    }
+
     buttonValue = '';
     buttonResult = '';
 }
 
 
 equal.addEventListener('click',()=>{
-    if(operators){
+    if(turn ==true){
         operatorsReserve = operators;
         buttonResult = parseInt(buttonResult);
         collectResult = parseInt(collectResult);
         console.log(collectResult);
         console.log(buttonResult);
         console.log("***");
-        switch(operators){
+        switch(operatorsReserve){
             case "+":
                 result = collectResult + buttonResult;
                 console.log(result)
                 displayResult.textContent = result;
                 break
+            case "-":
+                result = collectResult - buttonResult;
+                console.log(result)
+                displayResult.textContent = result;
+                break
+            case "*":
+                result = collectResult * buttonResult;
+                console.log(result)
+                displayResult.textContent = result;
+                break
+            case "/":
+                result = collectResult / buttonResult;
+                console.log(result)
+                displayResult.textContent = result;
+                break
             default:
                 console.log(result)
-     }
+        }
+        turn = false;
     }
-})
-
-
+    }
+)
 clearBtn.addEventListener('click',()=>{
     buttonValue = ''
     buttonResult = ''
@@ -79,4 +127,5 @@ clearBtn.addEventListener('click',()=>{
     result = ''
     displayResult.textContent = "0";
     console.log("Button Value :", "0")
+    turn = false;
 })
