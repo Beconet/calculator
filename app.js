@@ -20,6 +20,7 @@ let operatorsReserve = ''
 let topOperators = ''
 let turn = false;
 let percentVal ;
+let negative_turn = false;
 //button number click
 buttons.forEach(button => {
     button.addEventListener('click',()=>{
@@ -90,7 +91,7 @@ function calculation(calculate){
 percent.addEventListener('click',()=>{
     console.log("you click percent")
     if(buttonValue == ""){
-        console.log("error")    
+        displayResult.textContent = "Error";
     }else if(buttonValue != ""){
         buttonValue = parseInt(buttonValue)
         if(collectResult != ""&& buttonResult != ""){
@@ -101,12 +102,52 @@ percent.addEventListener('click',()=>{
             displayResult.textContent = buttonResult;
         }else{
             percentVal = buttonResult / 100
+            buttonResult = parseFloat(percentVal)
             displayResult.textContent = percentVal;
         }
     }   
 });
 negative.addEventListener('click',()=>{
     console.log("you click negative")
+    if (negative_turn == false){
+      if(buttonValue == ""){
+        console.log("error")    
+        displayResult.textContent = "Error";
+    }else if(buttonValue != ""){
+        buttonValue = parseInt(buttonValue)
+        if(collectResult != ""&& buttonResult != ""){
+            buttonResult = parseFloat(buttonResult)
+            console.log("lol")
+            buttonResult= -buttonResult
+            displayResult.textContent = buttonResult;
+            negative_turn = true;
+
+        }else{
+            buttonResult= -buttonResult
+            displayResult.textContent = buttonResult;
+            negative_turn = true;
+        }  
+    }
+    }else{
+        if(buttonValue == ""){
+            console.log("error")    
+            displayResult.textContent = "Error";
+        }else if(buttonValue != ""){
+            buttonValue = parseInt(buttonValue)
+            if(collectResult != ""&& buttonResult != ""){
+                buttonResult = parseFloat(buttonResult);
+                buttonResult= Math.abs(buttonResult);
+                displayResult.textContent = buttonResult;
+                negative_turn = false;
+    
+            }else{
+                buttonResult= Math.abs(buttonResult);
+                displayResult.textContent = buttonResult;
+                negative_turn = false;
+            }  
+        }
+    
+    }
 });
 
 equal.addEventListener('click',()=>{
