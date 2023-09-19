@@ -6,6 +6,8 @@ const plus = document.querySelector("#plus")
 const minus = document.querySelector("#minus")
 const multiple = document.querySelector("#multiple")
 const divide = document.querySelector("#divide")
+const percent = document.querySelector('#percent')
+const negative = document.querySelector('#negative')
 
 //setting
 let buttonValue = 0
@@ -17,7 +19,8 @@ let operators = ''
 let operatorsReserve = ''
 let topOperators = ''
 let turn = false;
-
+let percentVal ;
+//button number click
 buttons.forEach(button => {
     button.addEventListener('click',()=>{
         buttonValue = button.value; 
@@ -33,6 +36,7 @@ minus.addEventListener('click',()=>{calculation(minus)})
 multiple.addEventListener('click',()=>{calculation(multiple)})
 divide.addEventListener('click',()=>{calculation(divide)})
 
+
 function calculation(calculate){
     operators = calculate.value;
     operatorsReserve = operators;
@@ -40,7 +44,7 @@ function calculation(calculate){
     //after click equal before operators
     if(turn == true){
         console.log("Work")
-        buttonResult = parseInt(buttonResult)
+        buttonResult = parseFloat(buttonResult)
         console.log(collectResult);
         console.log(buttonResult);
             switch(operatorsReserve){
@@ -75,7 +79,7 @@ function calculation(calculate){
         turn = true;
     }
     else{
-        collectResult = parseInt(buttonResult);
+        collectResult = parseFloat(buttonResult);
         turn = true;
     }
 
@@ -83,12 +87,33 @@ function calculation(calculate){
     buttonResult = '';
 }
 
+percent.addEventListener('click',()=>{
+    console.log("you click percent")
+    if(buttonValue == ""){
+        console.log("error")    
+    }else if(buttonValue != ""){
+        buttonValue = parseInt(buttonValue)
+        if(collectResult != ""&& buttonResult != ""){
+            buttonResult = parseFloat(buttonResult)
+            percentVal = buttonResult / 100
+            percentVal = parseFloat(percentVal)
+            buttonResult = percentVal
+            displayResult.textContent = buttonResult;
+        }else{
+            percentVal = buttonResult / 100
+            displayResult.textContent = percentVal;
+        }
+    }   
+});
+negative.addEventListener('click',()=>{
+    console.log("you click negative")
+});
 
 equal.addEventListener('click',()=>{
     if(turn ==true){
         operatorsReserve = operators;
-        buttonResult = parseInt(buttonResult);
-        collectResult = parseInt(collectResult);
+        buttonResult = parseFloat(buttonResult);
+        collectResult = parseFloat(collectResult);
         console.log(collectResult);
         console.log(buttonResult);
         console.log("***");
