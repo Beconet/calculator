@@ -43,23 +43,36 @@ html, body #fullheight{
     justify-self: center;
     margin: 10px;
     font-size: 30px;
+    transition: 2s;
 }
 .item1{
     background-color: grey;
-    color: white;
+    color: black;
     border: none;
+    transition: 0.2s;
+}
+.item1:hover{
+    background-color: rgb(182, 182, 182);
+
 }
 .persent{
     background-color: gray;
     color: black;
     border: none;
-
-
+    transition: 0.2s;
+}
+.persent:hover{
+    background-color: rgb(182, 182, 182);
 }
 .sign{
     background-color: orange;
     color: white;
     border: none;
+    transition: 0.2s;
+}
+.sign:hover{
+    background-color: rgb(255, 201, 101);
+
 }
     
 
@@ -69,20 +82,39 @@ html, body #fullheight{
     border-radius: 136px;
     grid-column: span 2;
     border: none;
+    transition: 0.2s;
 }
+.zero:hover{
+    background-color:#696969 ;   
+}
+
 .number{
     background-color:#404040 ;    
+    border: none;
+    transition: 0.2s;
+}
+.number:hover{
+    background-color:#696969 ;    
     border: none;
 }
 .dot{
     background-color:#404040 ;   
     border: none;
+    transition: 0.2s;
+}
+.dot:hover{
+    background-color:#696969;   
 }
 
 .equal{
     background-color: orange;
     border: none;
+    transition: 0.2s;
 }
+.equal:hover{
+    background-color: rgb(255, 201, 101);
+}
+
 .negative{
     color: black;
 }
