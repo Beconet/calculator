@@ -18,7 +18,8 @@ html, body #fullheight{
     justify-content: flex-end;
     color: white;
     height: 380px;
-    font-size: 100px;
+    font-size: 65px;
+    padding: 5px;
 
 }
 .btn{

@@ -20,7 +20,9 @@ let operatorsReserve = ''
 let topOperators = ''
 let turn = false;
 let percentVal ;
+let percentValCollect;
 let negative_turn = false;
+
 //button number click
 buttons.forEach(button => {
     button.addEventListener('click',()=>{
@@ -39,48 +41,28 @@ divide.addEventListener('click',()=>{calculation(divide)})
 
 
 function calculation(calculate){
-    operators = calculate.value;
-    operatorsReserve = operators;
-    console.log("you click", operators)
-    //after click equal before operators
+    //compare michoo
     if(turn == true){
         console.log("Work")
         buttonResult = parseFloat(buttonResult)
         console.log(collectResult);
         console.log(buttonResult);
-            switch(operatorsReserve){
-                case "+":
-                    result = collectResult + buttonResult;
-                    console.log(result)
-                    displayResult.textContent = result;
-                    break
-                case "-":
-                    result = collectResult - buttonResult;
-                    console.log(result)
-                    displayResult.textContent = result;
-                    break
-                case "*":
-                    result = collectResult * buttonResult;
-                    console.log(result)
-                    displayResult.textContent = result;
-                    break
-                case "/":
-                    result = collectResult / buttonResult;
-                    console.log(result)
-                    displayResult.textContent = result;
-                    break    
-                default:
-                    console.log(result)
-        }
+        compare()
         topOperators = operatorsReserve
         }
+    operators = calculate.value;
+    operatorsReserve = operators;
+    console.log("you click", operators)
+    //after click equal before operators
     if (result != ''){
         console.log("your click me again! after equal")
         collectResult = result;
+        percentValCollect = parseFloat(buttonResult);
         turn = true;
     }
     else{
         collectResult = parseFloat(buttonResult);
+        percentValCollect = parseFloat(buttonResult);
         turn = true;
     }
 
@@ -92,15 +74,20 @@ percent.addEventListener('click',()=>{
     console.log("you click percent")
     if(buttonValue == ""){
         displayResult.textContent = "Error";
+        console.log("Error")
     }else if(buttonValue != ""){
-        buttonValue = parseInt(buttonValue)
+        buttonResult = parseFloat(buttonResult)
         if(collectResult != ""&& buttonResult != ""){
             buttonResult = parseFloat(buttonResult)
-            percentVal = buttonResult / 100
+            console.log(buttonResult)
+            console.log(percentValCollect)
+            percentVal = (percentValCollect / 100) * buttonResult 
+            console.log(percentVal)
             percentVal = parseFloat(percentVal)
             buttonResult = percentVal
             displayResult.textContent = buttonResult;
-        }else{
+        }
+        else{
             percentVal = buttonResult / 100
             buttonResult = parseFloat(percentVal)
             displayResult.textContent = percentVal;
@@ -112,12 +99,12 @@ negative.addEventListener('click',()=>{
     if (negative_turn == false){
       if(buttonValue == ""){
         console.log("error")    
+    
         displayResult.textContent = "Error";
     }else if(buttonValue != ""){
         buttonValue = parseInt(buttonValue)
         if(collectResult != ""&& buttonResult != ""){
             buttonResult = parseFloat(buttonResult)
-            console.log("lol")
             buttonResult= -buttonResult
             displayResult.textContent = buttonResult;
             negative_turn = true;
@@ -158,40 +145,49 @@ equal.addEventListener('click',()=>{
         console.log(collectResult);
         console.log(buttonResult);
         console.log("***");
-        switch(operatorsReserve){
-            case "+":
-                result = collectResult + buttonResult;
-                console.log(result)
-                displayResult.textContent = result;
-                break
-            case "-":
-                result = collectResult - buttonResult;
-                console.log(result)
-                displayResult.textContent = result;
-                break
-            case "*":
-                result = collectResult * buttonResult;
-                console.log(result)
-                displayResult.textContent = result;
-                break
-            case "/":
-                result = collectResult / buttonResult;
-                console.log(result)
-                displayResult.textContent = result;
-                break
-            default:
-                console.log(result)
-        }
-        turn = false;
+        compare()
     }
     }
 )
 clearBtn.addEventListener('click',()=>{
-    buttonValue = ''
-    buttonResult = ''
+    buttonValue = 0
+    result = ""
+    buttonResult = ""
     collectResult = ''
-    result = ''
     displayResult.textContent = "0";
-    console.log("Button Value :", "0")
+    operators = ''
+    operatorsReserve = ''
+    topOperators = ''
     turn = false;
-})
+    percentVal ;
+    negative_turn = false;
+    console.log("Button Value :", "0")
+});
+
+function compare(){
+    switch(operatorsReserve){
+        case "+":
+            result = collectResult + buttonResult;
+            console.log(result)
+            displayResult.textContent = result;
+            break
+        case "-":
+            result = collectResult - buttonResult;
+            console.log(result)
+            displayResult.textContent = result;
+            break
+        case "*":
+            result = collectResult * buttonResult;
+            console.log(result)
+            displayResult.textContent = result;
+            break
+        case "/":
+            result = collectResult / buttonResult;
+            console.log(result)
+            displayResult.textContent = result;
+            break
+        default:
+            console.log(result)
+    }
+    turn = false;
+}
